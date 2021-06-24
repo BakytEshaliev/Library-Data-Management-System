@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Employee Management System</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Library Management System</h1>
+    <hr>
+    <h2>Update Book</h2>
+
+    <form action="#" th:action="@{/saveBook}" th:object="${book}"
+          method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}" />
+
+        <input type="text" th:field="*{title}" class="form-control mb-4 col-4">
+
+        <select id="multiple-authors" th:field="*{authors}" multiple="multiple" class="mb-4 col-4">
+            <option th:each="author: ${allAuthors}"
+                    th:value="${author.getId()}" th:text="${author}">
+        </select>
+
+        <select id="single-type" th:field="*{type}" multiple="single" class="mb-4 col-4">
+            <option th:each="type: ${allTypes}"
+                    th:value="${type.getId()}" th:text="${type}">
+        </select>
+
+        <select id="single-language" th:field="*{language}" multiple="single" class="mb-4 col-4">
+            <option th:each="language: ${allLanguages}"
+                    th:value="${language.getId()}" th:text="${language}">
+        </select>
+
+        <select id="multiple-genres" th:field="*{genres}" multiple="multiple" class="mb-4 col-4">
+            <option th:each="genre: ${allGenres}"
+                    th:value="${genre.getId()}" th:text="${genre}">
+        </select>
+
+        <button type="submit" class="btn btn-info col-2"> Update Book</button>
+    </form>
+
+    <hr>
+
+    <a th:href = "@{/books}"> Back to Books List</a>
+</div>
+</body>
+</html>

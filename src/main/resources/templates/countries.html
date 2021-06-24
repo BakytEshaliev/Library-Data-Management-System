@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Library Management System</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container my-2">
+    <h1>Countries List</h1>
+    <li class="nav-item navbar-nav p-1" >
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" class="btn btn-outline-success"
+                   value="logout">
+        </form>
+    </li>
+
+    <tr>
+        <th>
+            <a th:href = "@{/books}" class="btn btn-primary btn-sm mb-3"> Books List </a>
+        </th>
+        <th>
+            <a th:href = "@{/authors}" class="btn btn-primary btn-sm mb-3"> Authors List </a>
+        </th>
+        <th>
+            <a th:href = "@{/countries}" class="btn btn-primary btn-sm mb-3"> Countries List </a>
+        </th>
+        <th>
+            <a th:href = "@{/genres}" class="btn btn-primary btn-sm mb-3"> Genres List </a>
+        </th>
+        <th>
+            <a th:href = "@{/languages}" class="btn btn-primary btn-sm mb-3"> Languages List </a>
+        </th>
+    </tr>
+
+    <div th:if="${Role==Role.ADMIN}">
+        <a th:href = "@{/showNewAuthorForm}" class="btn btn-primary btn-sm mb-3"> Add Country </a>
+    </div>
+    <div th:if="${Role==Role.READ_WRITER}">
+        <a th:href = "@{/showNewAuthorForm}" class="btn btn-primary btn-sm mb-3"> Add Country </a>
+    </div>
+
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>
+                ID</a>
+            </th>
+            <th>
+                Name</a>
+            </th>
+            <th>
+                Authors</a>
+            </th>
+            <th> Actions </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="country : ${listCountries}">
+            <td th:text="${country.getId()}"></td>
+            <td th:text="${country.getName()}"></td>
+            <td th:text="${country.getAuthors()}"></td>
+<td>
+            <div th:if="${Role==Role.ADMIN}">
+                <a th:href="@{/showFormForUpdateCountry/{id}(id=${country.getId()})}" class="btn btn-primary">Update</a>
+            </div>
+            <div th:if="${Role==Role.READ_WRITER}">
+                <a th:href="@{/showFormForUpdateCountry/{id}(id=${country.getId()})}" class="btn btn-primary">Update</a>
+            </div>
+            <div th:if="${Role==Role.ADMIN}">
+                <a th:href="@{/deleteCountry/{id}(id=${country.getId()})}" class="btn btn-danger">Delete</a>
+            </div>
+</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
