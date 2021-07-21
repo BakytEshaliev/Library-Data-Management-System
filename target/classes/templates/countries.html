@@ -40,10 +40,10 @@
     </tr>
 
     <div th:if="${Role==Role.ADMIN}">
-        <a th:href = "@{/showNewAuthorForm}" class="btn btn-primary btn-sm mb-3"> Add Country </a>
+        <a th:href = "@{/showNewCountryForm}" class="btn btn-primary btn-sm mb-3"> Add Country </a>
     </div>
     <div th:if="${Role==Role.READ_WRITER}">
-        <a th:href = "@{/showNewAuthorForm}" class="btn btn-primary btn-sm mb-3"> Add Country </a>
+        <a th:href = "@{/showNewCountryForm}" class="btn btn-primary btn-sm mb-3"> Add Country </a>
     </div>
 
     <table border="1" class = "table table-striped table-responsive-md">
