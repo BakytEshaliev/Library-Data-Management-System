@@ -11,7 +11,7 @@
 <div class="container">
     <h1>Library Management System</h1>
     <hr>
-    <h2>Update Language</h2>
+    <h2>Save Language</h2>
 
     <form action="#" th:action="@{/saveLanguage}" th:object="${language}"
           method="POST">
@@ -25,7 +25,7 @@
                     th:value="${book.getId()}" th:text="${book}">
         </select>
 
-        <button type="submit" class="btn btn-info col-2"> Update Language</button>
+        <button type="submit" class="btn btn-info col-2"> Save Language</button>
     </form>
 
     <hr>
